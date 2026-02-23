@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>!!! DRAGONHACK PLEASE !!!</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Comic Sans MS", cursive;
+    background: linear-gradient(
+        45deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        magenta,
+        red
+    );
+    background-size: 800% 800%;
+    animation: rainbowBG 6s linear infinite;
+}
+
+/* Rainbow background animation */
+@keyframes rainbowBG {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Center container */
+.container {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: zoomIn 1s ease-out forwards;
+    padding: 20px;
+}
+
+@keyframes zoomIn {
+    to { transform: translate(-50%, -50%) scale(1); }
+}
+
+h1 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    color: yellow;
+    text-shadow:
+        2px 2px red,
+        -2px -2px blue,
+        4px 4px lime;
+    animation: crazyText 1s infinite alternate;
+}
+
+@keyframes crazyText {
+    0% { color: yellow; transform: rotate(-2deg); }
+    25% { color: cyan; transform: rotate(2deg); }
+    50% { color: magenta; transform: rotate(-2deg); }
+    75% { color: lime; transform: rotate(2deg); }
+    100% { color: orange; transform: rotate(-2deg); }
+}
+
+/* Bouncing logo */
+.logo {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 2s linear infinite;
+}
+
+@media (min-width: 600px) {
+    .logo {
+        width: 120px;
+        height: 120px;
+        font-size: 60px;
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Marquee */
+.marquee {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>
+        PLEASE DRAGONHACK<br>
+        WE WANT THE TICKETS PLEASE 🙏🐉🔥
+    </h1>
+</div>
+
+<div class="logo" id="dvdLogo">🐉</div>
+
+<div class="marquee">
+    <span>✨✨✨ DRAGONHACK PLEASE NOTICE US ✨✨✨ WE ARE DESPERATE ✨✨✨</span>
+</div>
+
+<script>
+/* DVD bouncing logo */
+const logo = document.getElementById("dvdLogo");
+
+let x = 50;
+let y = 50;
+let dx = 2;
+let dy = 2;
+
+function moveLogo() {
+    const size = logo.offsetWidth;
+    const width = window.innerWidth - size;
+    const height = window.innerHeight - size;
+
+    x += dx;
+    y += dy;
+
+    if (x <= 0 || x >= width) dx *= -1;
+    if (y <= 0 || y >= height) dy *= -1;
+
+    logo.style.left = x + "px";
+    logo.style.top = y + "px";
+
+    requestAnimationFrame(moveLogo);
+}
+
+moveLogo();
+
+/* Tap sparkles (works on phones too) */
+document.addEventListener("touchstart", createSparkle);
+document.addEventListener("click", createSparkle);
+
+function createSparkle(e) {
+    const x = e.touches ? e.touches[0].pageX : e.pageX;
+    const y = e.touches ? e.touches[0].pageY : e.pageY;
+
+    const sparkle = document.createElement("div");
+    sparkle.style.position = "absolute";
+    sparkle.style.left = x + "px";
+    sparkle.style.top = y + "px";
+    sparkle.style.width = "10px";
+    sparkle.style.height = "10px";
+    sparkle.style.background = "white";
+    sparkle.style.borderRadius = "50%";
+    sparkle.style.pointerEvents = "none";
+    sparkle.style.animation = "fadeOut 1s forwards";
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 1000);
+}
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes fadeOut {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
